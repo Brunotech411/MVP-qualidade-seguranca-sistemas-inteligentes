@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVP - Previsão de Falha</title>
+</head>
+<body>
+    <h1>Previsão de Falha - Modelo de Manutenção Preditiva</h1>
+    <form id="prediction-form">
+        <label for="air_temperature_k">Temperatura do Ar (K):</label>
+        <input type="number" id="air_temperature_k" name="air_temperature_k" placeholder="Ex: 300.0" title="Temperatura do Ar em Kelvin"><br><br>
+
+        <label for="process_temperature_k">Temperatura do Processo (K):</label>
+        <input type="number" id="process_temperature_k" name="process_temperature_k" placeholder="Ex: 310.0" title="Temperatura do processo em Kelvin"><br><br>
+
+        <label for="rotational_speed_rpm">Velocidade de Rotação (RPM):</label>
+        <input type="number" id="rotational_speed_rpm" name="rotational_speed_rpm" placeholder="Ex: 1500" title="Velocidade do equipamento em rotações por minuto"><br><br>
+
+        <label for="torque_nm">Torque (Nm):</label>
+        <input type="number" id="torque_nm" name="torque_nm" placeholder="Ex: 40.0" title="Torque aplicado em Newton-metro"><br><br>
+
+        <label for="tool_wear_min">Desgaste da Ferramenta (min):</label>
+        <input type="number" id="tool_wear_min" name="tool_wear_min" placeholder="Ex: 20" title="Tempo de desgaste da ferramenta em minutos"><br><br>
+
+        <label for="twf">Falha de Ferramenta (TWF):</label>
+        <input type="number" id="twf" name="twf" placeholder="0 ou 1" title="0 = Não, 1 = Sim"><br><br>
+
+        <label for="hdf">Falha de Dureza (HDF):</label>
+        <input type="number" id="hdf" name="hdf" placeholder="0 ou 1" title="0 = Não, 1 = Sim"><br><br>
+
+        <label for="pwf">Falha de Potência (PWF):</label>
+        <input type="number" id="pwf" name="pwf" placeholder="0 ou 1" title="0 = Não, 1 = Sim"><br><br>
+
+        <label for="osf">Falha de Sobrecarga (OSF):</label>
+        <input type="number" id="osf" name="osf" placeholder="0 ou 1" title="0 = Não, 1 = Sim"><br><br>
+
+        <label for="rnf">Falha Aleatória (RNF):</label>
+        <input type="number" id="rnf" name="rnf" placeholder="0 ou 1" title="0 = Não, 1 = Sim"><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <h2>Resultado:</h2>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const form = e.target;
+            const data = {
+                air_temperature_k: parseFloat(form.air_temperature_k.value),
+                process_temperature_k: parseFloat(form.process_temperature_k.value),
+                rotational_speed_rpm: parseFloat(form.rotational_speed_rpm.value),
+                torque_nm: parseFloat(form.torque_nm.value),
+                tool_wear_min: parseFloat(form.tool_wear_min.value),
+                twf: parseInt(form.twf.value),
+                hdf: parseInt(form.hdf.value),
+                pwf: parseInt(form.pwf.value),
+                osf: parseInt(form.osf.value),
+                rnf: parseInt(form.rnf.value)
+            };
+
+            const response = await fetch("http://127.0.0.1:8000/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            document.getElementById("result").innerText = "Resultado da predição: " + result.resultado;
+        });
+    </script>
+</body>
+</html>
