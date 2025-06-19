@@ -142,9 +142,37 @@ Esse MVP demonstrou a aplicação prática de técnicas de Machine Learning em m
 
 Abaixo está o fluxograma completo do funcionamento da aplicação:
 
-![Fluxo do MVP](assets/fluxo_mvp.png)
+![Fluxo do MVP](https://github.com/SEU_USUARIO/MVP-qualidade-seguranca-sistemas-inteligentes/raw/main/assets/fluxo_mvp.png)
 
 Este fluxograma resume:
 - A leitura do dataset
 - O treinamento e exportação do modelo `.pkl`
 - A estrutura da API FastAPI e o endpoint de predição
+
+
+---
+
+## 📥 Dataset
+
+O projeto utiliza o dataset **AI4I 2020 Predictive Maintenance**, disponível publicamente na UCI Machine Learning Repository.
+
+Você pode baixá-lo diretamente pelo link:
+
+🔗 [https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset](https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset)
+
+O arquivo necessário é:
+
+```
+ai4i2020.csv
+```
+
+⚠️ Após o download, você deve:
+1. Fazer upload do arquivo no notebook do Colab quando solicitado
+2. Executar todas as células
+3. Exportar o modelo `modelo_manutencao.pkl`
+
+O notebook já está preparado para gerar esse arquivo automaticamente.
+
+---
+
+✅ Alternativamente, se autorizado pela coordenação, o CSV poderá ser incluído diretamente no repositório em `/data/ai4i2020.csv` para facilitar testes e reprodutibilidade.
