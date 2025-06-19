@@ -1,16 +1,21 @@
-# Ambiente virtual
+# Ignorar ambiente virtual e arquivos temporários
 venv/
-
-# Cache do Python
 __pycache__/
-*.py[cod]
-
-# Arquivos do Jupyter
+*.pyc
+*.pkl
+*.log
+.DS_Store
 .ipynb_checkpoints/
 
-# Dados temporários ou sensíveis
-*.csv
-*.pkl
+# Ignorar arquivos do Jupyter Notebook temporários
+*.nbconvert.ipynb
 
-# Logs
-*.log
+# Ignorar arquivos do sistema operacional
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Ignorar arquivos ocultos de backup
+*.swp
+*.swo
+*~
