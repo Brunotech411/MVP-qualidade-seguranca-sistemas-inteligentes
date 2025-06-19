@@ -1,0 +1,16 @@
+# Ambiente virtual
+venv/
+
+# Cache do Python
+__pycache__/
+*.py[cod]
+
+# Arquivos do Jupyter
+.ipynb_checkpoints/
+
+# Dados temporários ou sensíveis
+*.csv
+*.pkl
+
+# Logs
+*.log

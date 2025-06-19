@@ -19,7 +19,19 @@ model = joblib.load("api/model/modelo_manutencao.pkl")
 
 @app.post("/predict")
 def predict(data: InputData):
-    X = np.array([[data.temperatura, data.pressao, data.vibracao, data.corrente]])
+    X = np.array([[
+    data.air_temperature_k,
+    data.process_temperature_k,
+    data.rotational_speed_rpm,
+    data.torque_nm,
+    data.tool_wear_min,
+    data.twf,
+    data.hdf,
+    data.pwf,
+    data.osf,
+    data.rnf
+]])
+
     pred = model.predict(X)[0]
     logger.log_info(f"Entrada: {data.dict()} | Resultado: {pred}")
     return {"resultado": str(pred)}
