@@ -134,3 +134,17 @@ ou
 ## ✅ Conclusão
 
 Esse MVP demonstrou a aplicação prática de técnicas de Machine Learning em manutenção preditiva, integrando ciência de dados, engenharia de software e segurança. A arquitetura modular permite expansão futura e reuso em ambientes industriais reais.
+
+
+---
+
+## 🧭 Fluxo da Solução
+
+Abaixo está o fluxograma completo do funcionamento da aplicação:
+
+![Fluxo do MVP](https://github.com/SEU_USUARIO/MVP-qualidade-seguranca-sistemas-inteligentes/raw/main/assets/fluxo_mvp.png)
+
+Este fluxograma resume:
+- A leitura do dataset
+- O treinamento e exportação do modelo `.pkl`
+- A estrutura da API FastAPI e o endpoint de predição
