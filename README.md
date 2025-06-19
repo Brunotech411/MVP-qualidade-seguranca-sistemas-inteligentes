@@ -142,7 +142,7 @@ Esse MVP demonstrou a aplicação prática de técnicas de Machine Learning em m
 
 Abaixo está o fluxograma completo do funcionamento da aplicação:
 
-![Fluxo do MVP](https://github.com/SEU_USUARIO/MVP-qualidade-seguranca-sistemas-inteligentes/raw/main/assets/fluxo_mvp.png)
+![Fluxo do MVP](assets/fluxo_mvp.png)
 
 Este fluxograma resume:
 - A leitura do dataset
