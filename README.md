@@ -89,3 +89,23 @@ O modelo com melhor desempenho foi a **Árvore de Decisão**, exportado como `mo
 ## ✅ Conclusão
 
 Esse MVP demonstrou a aplicação prática de técnicas de Machine Learning em manutenção preditiva, integrando ciência de dados, engenharia de software e segurança. A arquitetura modular permite expansão futura e reuso em ambientes industriais reais.
+
+
+---
+
+## 🧠 Como gerar o modelo `.pkl`
+
+Para treinar e gerar o modelo manualmente:
+
+1. Acesse o notebook `Predictive_Maintenance_MVP_Bruno.ipynb` no Google Colab  
+2. Faça upload do arquivo `ai4i2020.csv` quando solicitado  
+3. Execute todas as células até o final  
+4. O arquivo `modelo_manutencao.pkl` será criado automaticamente  
+5. Para baixá-lo, execute a célula:
+
+```python
+from google.colab import files
+files.download('modelo_manutencao.pkl')
+```
+
+6. Copie o arquivo baixado para o caminho `api/model/` da aplicação
