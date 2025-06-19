@@ -1,1 +1,4 @@
 2025-06-19 16:59:29,326 - INFO - Entrada: {'air_temperature_k': 298.1, 'process_temperature_k': 308.5, 'rotational_speed_rpm': 1550.0, 'torque_nm': 42.5, 'tool_wear_min': 150.0, 'twf': 0, 'hdf': 0, 'pwf': 0, 'osf': 0, 'rnf': 0} | Resultado: 0
+2025-06-19 18:09:51,669 - INFO - Entrada: {'air_temperature_k': 300.0, 'process_temperature_k': 310.0, 'rotational_speed_rpm': 1600.0, 'torque_nm': 38.0, 'tool_wear_min': 25.0, 'twf': 0, 'hdf': 0, 'pwf': 0, 'osf': 0, 'rnf': 0} | Resultado: 0
+2025-06-19 18:10:09,448 - INFO - Entrada: {'air_temperature_k': 301.0, 'process_temperature_k': 312.0, 'rotational_speed_rpm': 1600.0, 'torque_nm': 39.0, 'tool_wear_min': 25.0, 'twf': 0, 'hdf': 0, 'pwf': 0, 'osf': 0, 'rnf': 0} | Resultado: 0
+2025-06-19 18:14:55,647 - INFO - Entrada: {'air_temperature_k': 300.5, 'process_temperature_k': 310.2, 'rotational_speed_rpm': 1600.0, 'torque_nm': 38.5, 'tool_wear_min': 25.0, 'twf': 0, 'hdf': 0, 'pwf': 0, 'osf': 0, 'rnf': 0} | Resultado: 0
