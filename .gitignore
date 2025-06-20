@@ -1,0 +1,36 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+
+# VSCode
+.vscode/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Environment variables and secrets
+.env
+
+# Modelos salvos
+*.pkl
+*.joblib
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# Test result cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos do Git
+*.swp
