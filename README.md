@@ -132,10 +132,36 @@ uvicorn api.app:app --reload
 
 O modelo retorna duas saídas possíveis:
 
-- `0` → **Operação normal** (sem falhas detectadas)
-- `1` → **Falha detectada** (algum dos modos de falha ocorreu)
+- `0` → **Operação normal** (sem falhas detectadas).
+- `1` → **Falha detectada** (algum dos modos de falha ocorreu).
 
-### Exemplo de requisição (via Swagger ou JSON):
+### Exemplo de requisição sem falha (via Swagger ou JSON):
+
+```json
+{
+  "air_temperature_k": 298.0,
+  "process_temperature_k": 302.0,
+  "rotational_speed_rpm": 1280.0,
+  "torque_nm": 63.0,
+  "tool_wear_min": 212.0,
+  "twf": 0,
+  "hdf": 0,
+  "pwf": 0,
+  "osf": 0,
+  "rnf": 0
+}
+
+```
+
+### Exemplo de resposta da API:
+
+```json
+{
+  "resultado": 0,
+  "descricao": "Operação normal"
+}
+
+### Exemplo de requisição com falha (via Swagger ou JSON):
 
 ```json
 {
