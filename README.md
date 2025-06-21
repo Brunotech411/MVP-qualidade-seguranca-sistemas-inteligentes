@@ -162,7 +162,7 @@ O modelo retorna duas saídas possíveis:
 }
 ```
 
-> Resultado esperado: `1` com descrição "Operação normal"
+> Resultado esperado: `0` com descrição "Operação normal"
 
 ### Exemplo de requisição com falha (via Swagger ou JSON):
 
