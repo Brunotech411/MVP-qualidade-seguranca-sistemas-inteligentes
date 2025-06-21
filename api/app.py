@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from api.schemas.input import InputData
-import joblib
+import pickle
 import numpy as np
 from fastapi.middleware.cors import CORSMiddleware
 import api.logger as logger
+import pandas as pd
 
 app = FastAPI()
 
@@ -15,23 +16,25 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = joblib.load("api/model/modelo_manutencao.pkl")
+with open("api/model/modelo_manutencao.pkl", "rb") as f:
+    model = pickle.load(f)
+
 
 @app.post("/predict")
 def predict(data: InputData):
-    X = np.array([[
-    data.air_temperature_k,
-    data.process_temperature_k,
-    data.rotational_speed_rpm,
-    data.torque_nm,
-    data.tool_wear_min,
-    data.twf,
-    data.hdf,
-    data.pwf,
-    data.osf,
-    data.rnf
-]])
+    X = pd.DataFrame([{
+    "air_temperature_k": data.air_temperature_k,
+    "process_temperature_k": data.process_temperature_k,
+    "rotational_speed_rpm": data.rotational_speed_rpm,
+    "torque_nm": data.torque_nm,
+    "tool_wear_min": data.tool_wear_min,
+    "twf": data.twf,
+    "hdf": data.hdf,
+    "pwf": data.pwf,
+    "osf": data.osf,
+    "rnf": data.rnf
+}])
 
     pred = model.predict(X)[0]
-    logger.log_info(f"Entrada: {data.dict()} | Resultado: {pred}")
+    logger.log_info(f"Entrada: {data.model_dump()} | Resultado: {pred}")
     return {"resultado": str(pred)}

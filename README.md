@@ -34,9 +34,40 @@ MVP-qualidade-seguranca-sistemas-inteligentes
 
 ## 📦 Requisitos
 
-- Python 3.11+
-- Ambiente virtual (`venv`)
-- FastAPI, Uvicorn, Scikit-Learn, Joblib
+- annotated-types==0.7.0
+- anyio==4.9.0
+- certifi==2025.6.15
+- click==8.2.1
+- colorama==0.4.6
+- fastapi==0.110.0
+- h11==0.16.0
+- httpcore==1.0.9
+- httpx==0.27.0
+- idna==3.10
+- iniconfig==2.1.0
+- joblib==1.4.2
+- numpy==1.26.4
+- packaging==25.0
+- pandas==2.3.0
+- pluggy==1.6.0
+- pydantic==2.7.1
+- pydantic_core==2.18.2
+- Pygments==2.19.1
+- pytest==8.2.1
+- pytest-asyncio==1.0.0
+- python-dateutil==2.9.0.post0
+- pytz==2025.2
+- scikit-learn==1.6.1
+- scipy==1.15.3
+- six==1.17.0
+- sniffio==1.3.1
+- starlette==0.36.3
+- threadpoolctl==3.6.0
+- typing-inspection==0.4.1
+- typing_extensions==4.14.0
+- tzdata==2025.2
+- uvicorn==0.29.0
+
 
 ---
 
@@ -46,7 +77,7 @@ O dataset utilizado é o **AI4I 2020 Predictive Maintenance**, disponível em:
 
 🔗 https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset
 
-Baixe o arquivo CSV (`ai4i2020.csv`) e utilize no notebook.
+Baixe o arquivo CSV (`ai4i2020.csv`) e utilize no notebook diretamente no Colab.
 
 ---
 
