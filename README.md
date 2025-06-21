@@ -17,7 +17,6 @@ MVP-qualidade-seguranca-sistemas-inteligentes
 ├── api/                    # Back-end FastAPI
 │   ├── app.py              # Rota principal
 │   ├── logger.py           # Logs de predição
-│   ├── model/              # Contém modelo .pkl
 │   └── schemas/            # Validação com Pydantic
 │
 ├── assets/                 # Imagens e fluxograma
