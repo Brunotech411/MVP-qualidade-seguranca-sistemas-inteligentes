@@ -17,6 +17,7 @@ MVP-qualidade-seguranca-sistemas-inteligentes
 ├── api/                    # Back-end FastAPI
 │   ├── app.py              # Rota principal
 │   ├── logger.py           # Logs de predição
+│   ├── model/              # insira o modelo .pkl treinado no colab
 │   └── schemas/            # Validação com Pydantic
 │
 ├── assets/                 # Imagens e fluxograma
@@ -82,14 +83,14 @@ Baixe o arquivo CSV (`ai4i2020.csv`) e utilize no notebook diretamente no Colab.
 
 ## 📈 Geração do Modelo `.pkl`
 
-1. Acesse o notebook `Predictive_Maintenance_MVP_Bruno.ipynb`
+1. Acesse o notebook no colab `Predictive_Maintenance_MVP_Bruno.ipynb`
 2. Execute todas as células (em ordem)
-3. O modelo será treinado e salvo como:
+3. O modelo será treinado e deverá ser salvo localmente como:
 
 ```bash
 api/model/modelo_manutencao.pkl
 ```
-
+Obs: atenção! salve o arquivo na pasta "model"
 ---
 
 ## 🚀 Executando a API
