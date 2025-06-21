@@ -162,6 +162,8 @@ O modelo retorna duas saídas possíveis:
 }
 ```
 
+> Resultado esperado: `1` com descrição "Falha detectada"
+
 ### Exemplo de requisição com falha (via Swagger ou JSON):
 
 ```json
