@@ -23,18 +23,20 @@ with open("api/model/modelo_manutencao.pkl", "rb") as f:
 @app.post("/predict")
 def predict(data: InputData):
     X = pd.DataFrame([{
-    "air_temperature_k": data.air_temperature_k,
-    "process_temperature_k": data.process_temperature_k,
-    "rotational_speed_rpm": data.rotational_speed_rpm,
-    "torque_nm": data.torque_nm,
-    "tool_wear_min": data.tool_wear_min,
-    "twf": data.twf,
-    "hdf": data.hdf,
-    "pwf": data.pwf,
-    "osf": data.osf,
-    "rnf": data.rnf
-}])
+        "air_temperature_k": data.air_temperature_k,
+        "process_temperature_k": data.process_temperature_k,
+        "rotational_speed_rpm": data.rotational_speed_rpm,
+        "torque_nm": data.torque_nm,
+        "tool_wear_min": data.tool_wear_min,
+        "twf": data.twf,
+        "hdf": data.hdf,
+        "pwf": data.pwf,
+        "osf": data.osf,
+        "rnf": data.rnf
+    }])
 
     pred = model.predict(X)[0]
+    descricao = "Operação normal" if pred == 0 else "Falha detectada"
+
     logger.log_info(f"Entrada: {data.model_dump()} | Resultado: {pred}")
-    return {"resultado": str(pred)}
+    return {"resultado": int(pred), "descricao": descricao}
