@@ -83,8 +83,8 @@ Baixe o arquivo CSV (`ai4i2020.csv`) e utilize no notebook diretamente no Colab.
 
 ## 📈 Geração do Modelo `.pkl`
 
-1. Acesse o notebook no colab `Predictive_Maintenance_MVP_Bruno.ipynb` (disponível na raiz do projeto)
-2. Execute todas as células (em ordem)
+1. Acesse o notebook `Predictive_Maintenance_MVP_Bruno.ipynb` (disponível na raiz do projeto)
+2. Execute todas as células diretamente no Colab (em ordem)
 3. O modelo será treinado e deverá ser salvo localmente como:
 
 ```bash
