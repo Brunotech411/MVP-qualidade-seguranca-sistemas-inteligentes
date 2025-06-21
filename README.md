@@ -160,6 +160,7 @@ O modelo retorna duas saídas possíveis:
   "resultado": 0,
   "descricao": "Operação normal"
 }
+```
 
 ### Exemplo de requisição com falha (via Swagger ou JSON):
 
