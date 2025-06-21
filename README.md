@@ -87,9 +87,10 @@ O mesmo arquivo se encontra na pasta data e pode ser utilizado para carregar no 
 
 ## 📈 Geração do Modelo `.pkl`
 
-1. Acesse o notebook `Predictive_Maintenance_MVP_Bruno.ipynb` (disponível na raiz do projeto)
+1. Acesse o notebook `Predictive_Maintenance_MVP_Bruno.ipynb` (disponível na raiz do projeto e também no link de envio do MVP)
 2. Execute todas as células diretamente no Colab (em ordem)
-3. O modelo será treinado e deverá ser salvo localmente como:
+3. Na etapa 2 será solicitado o carregamento do arquivo ai4i2020.csv
+4. O modelo será treinado e deverá ser salvo localmente como:
 
 ```bash
 api/model/modelo_manutencao.pkl
