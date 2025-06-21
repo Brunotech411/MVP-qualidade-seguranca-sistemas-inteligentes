@@ -135,15 +135,6 @@ O modelo retorna duas saídas possíveis:
 - `0` → **Operação normal** (sem falhas detectadas)
 - `1` → **Falha detectada** (algum dos modos de falha ocorreu)
 
-### Exemplo de resposta da API:
-
-```json
-{
-  "resultado": 1,
-  "descricao": "Falha detectada"
-}
-```
-
 ### Exemplo de requisição (via Swagger ou JSON):
 
 ```json
@@ -159,6 +150,17 @@ O modelo retorna duas saídas possíveis:
   "osf": 0,
   "rnf": 0
 }
+
+```
+
+### Exemplo de resposta da API:
+
+```json
+{
+  "resultado": 1,
+  "descricao": "Falha detectada"
+}
+
 ```
 
 > Resultado esperado: `1` com descrição "Falha detectada" (simulando falha por tool wear - TWF)
