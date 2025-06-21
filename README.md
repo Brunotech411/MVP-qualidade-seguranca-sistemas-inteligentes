@@ -128,6 +128,43 @@ uvicorn api.app:app --reload
 
 ---
 
+## 📊 Lógica de Predição
+
+O modelo retorna duas saídas possíveis:
+
+- `0` → **Operação normal** (sem falhas detectadas)
+- `1` → **Falha detectada** (algum dos modos de falha ocorreu)
+
+### Exemplo de resposta da API:
+
+```json
+{
+  "resultado": 1,
+  "descricao": "Falha detectada"
+}
+```
+
+### Exemplo de requisição (via Swagger ou JSON):
+
+```json
+{
+  "air_temperature_k": 295.0,
+  "process_temperature_k": 303.0,
+  "rotational_speed_rpm": 1370.0,
+  "torque_nm": 60.0,
+  "tool_wear_min": 210.0,
+  "twf": 1,
+  "hdf": 0,
+  "pwf": 0,
+  "osf": 0,
+  "rnf": 0
+}
+```
+
+> Resultado esperado: `1` com descrição "Falha detectada" (simulando falha por tool wear - TWF)
+
+---
+
 ## 📊 Fluxograma da Solução
 
 Abaixo está o fluxograma completo da solução:
@@ -145,3 +182,10 @@ Este fluxograma resume:
 ## ✅ Conclusão
 
 Este MVP demonstrou a aplicação prática de técnicas de Machine Learning em manutenção preditiva, integrando ciência de dados, engenharia de software e segurança. A arquitetura modular permite expansão futura e reuso em ambientes industriais reais.
+
+---
+
+## 📄 Referências
+
+- Dataset AI4I 2020: UCI Repository
+- FastAPI Docs: [https://fastapi.tiangolo.com/]
