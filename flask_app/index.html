@@ -2,10 +2,9 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Diagnóstico de Equipamentos</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
     <header>
@@ -22,11 +21,28 @@
         <input type="text" id="rpm" placeholder="RPM">
         <input type="text" id="torque" placeholder="Torque (Nm)">
         <input type="text" id="desgaste_ferramenta" placeholder="Desgaste (min)">
-        <input type="text" id="twf" placeholder="TWF">
-        <input type="text" id="hdf" placeholder="HDF">
-        <input type="text" id="pwf" placeholder="PWF">
-        <input type="text" id="osf" placeholder="OSF">
-        <input type="text" id="rnf" placeholder="RNF">
+
+        <div class="label-input">
+            <label for="twf"><strong>TWF:</strong> Desgaste</label>
+            <input type="text" id="twf" placeholder="TWF">
+        </div>
+        <div class="label-input">
+            <label for="hdf"><strong>HDF:</strong> Dissipação Térmica</label>
+            <input type="text" id="hdf" placeholder="HDF">
+        </div>
+        <div class="label-input">
+            <label for="pwf"><strong>PWF:</strong> Potência</label>
+            <input type="text" id="pwf" placeholder="PWF">
+        </div>
+        <div class="label-input">
+            <label for="osf"><strong>OSF:</strong> Sobrecarga</label>
+            <input type="text" id="osf" placeholder="OSF">
+        </div>
+        <div class="label-input">
+            <label for="rnf"><strong>RNF:</strong> Falha aleatória</label>
+            <input type="text" id="rnf" placeholder="RNF">
+        </div>
+
         <button type="button" onclick="novoEquipamento()" class="addBtn">Diagnosticar</button>
     </section>
 
@@ -52,6 +68,6 @@
         </div>
     </section>
 
-    <script src="scripts.js"></script>
+    <script src="static/scripts.js"></script>
 </body>
 </html>

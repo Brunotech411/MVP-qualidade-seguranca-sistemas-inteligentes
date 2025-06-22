@@ -14,21 +14,29 @@ Este projeto é um MVP que aplica **Machine Learning em manutenção preditiva i
 ```
 MVP-qualidade-seguranca-sistemas-inteligentes
 │
-│── assets/                 # Imagens e fluxograma
+│── assets/                                 # Imagens e fluxograma
+│   └── fluxo_mvp.png                       # fluxograma
 │
-├── data/
-│   └── ai4i2020            # dataset
+├── data/                                   # Dataset utilizado no notebook
+│   └── ai4i2020.csv        
 │
-├── flask/                  # Back-end FlaskAPI
-│   ├── static/             # JS + CSS
-│   ├── templates/          # index.html
-│   ├── app.py              # Rota principal
-│   └── test_api_flask.py   # Teste funcional com requests
+├── flask_app/                              # Back-end FlaskAPI
+│   ├── static/                             # JS + CSS
+│   │   ├── scripts.js 
+│   │   └── styles.css 
+│   │
+│   ├── templates/                          # Template HTML principal
+│   │   └── index.html 
+│   │
+│   ├── app.py                              # Aplicação Flask
+│   ├── modelo_manutencao.pkl               # ⚠️ Adicionar manualmente após gerar via notebook Colab
+│   └── test_api_flask.py                   # Testes com requests
 │
-├── Predictive_Maintenance_MVP_Bruno.ipynb  # Notebook de treino
-├── requirements.txt        # Dependências da aplicação
-├── README.md               # Instruções e detalhes
-└── .gitignore              # Arquivos ignorados
+├── .gitattributes
+├── .gitignore                              # Arquivos ignorados
+├── Predictive_Maintenance_MVP_Bruno.ipynb  # Notebook de treino e exportação
+├── README.md                               # Instruções do projeto
+└── requirements.txt                        # Dependências da aplicação
 ```
 
 ---
@@ -76,9 +84,9 @@ O mesmo arquivo se encontra na pasta data e pode ser utilizado para carregar no 
 4. O modelo será treinado e deverá ser salvo localmente como:
 
 ```bash
-flask/modelo_manutencao.pkl
+flask_app/modelo_manutencao.pkl
 ```
-Obs: atenção! salve o arquivo na pasta "model"
+⚠️ **Importante:** após gerar o modelo, mova manualmente o arquivo `modelo_manutencao.pkl` para a pasta `flask_app/`.
 ---
 
 ## 🚀 Executando a API

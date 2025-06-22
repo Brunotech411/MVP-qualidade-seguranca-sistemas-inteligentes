@@ -1,11 +1,16 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import sqlite3
 import pickle
 import numpy as np
 
-app = Flask(__name__)
-CORS(app)
+app = Flask(__name__, static_folder='static', template_folder='templates')
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+# ✅ Rota principal para carregar o HTML via servidor
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 # Carregando modelo de manutenção
 with open("modelo_manutencao.pkl", "rb") as f:
@@ -48,12 +53,13 @@ def add_equipamento():
     osf = int(data['osf'])
     rnf = int(data['rnf'])
 
-    # Predição com modelo real
+    # 🔍 Predição com modelo real
     entrada = np.array([[temperatura_ar, temperatura_processo, rpm, torque, desgaste_ferramenta,
                          twf, hdf, pwf, osf, rnf]])
     resultado = int(modelo.predict(entrada)[0])
+    descricao = "Operação normal" if resultado == 0 else "Falha detectada"
 
-    # Salvar no banco
+    # 💾 Salvar no banco
     conn = sqlite3.connect('manutencao.db')
     cursor = conn.cursor()
     cursor.execute('''INSERT INTO equipamentos 
@@ -65,7 +71,7 @@ def add_equipamento():
     conn.commit()
     conn.close()
 
-    return jsonify({'resultado': resultado})
+    return jsonify({'resultado': resultado, 'descricao': descricao})
 
 @app.route('/equipamentos', methods=['GET'])
 def listar_equipamentos():

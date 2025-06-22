@@ -1,3 +1,6 @@
+// 🔗 URL base da API
+const API_BASE = "http://127.0.0.1:5000";
+
 // Carregar dados ao iniciar
 document.addEventListener("DOMContentLoaded", function () {
     carregarEquipamentos();
@@ -5,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Carrega equipamentos salvos no banco
 function carregarEquipamentos() {
-    fetch("http://127.0.0.1:5000/equipamentos")
+    fetch(`${API_BASE}/equipamentos`)
         .then(response => response.json())
         .then(data => {
             data.equipamentos.forEach(e => inserirTabela(e));
@@ -27,23 +30,23 @@ function novoEquipamento() {
     formData.append("osf", document.getElementById("osf").value);
     formData.append("rnf", document.getElementById("rnf").value);
 
-    fetch("http://127.0.0.1:5000/equipamento", {
+    fetch(`${API_BASE}/equipamento`, {
         method: "POST",
         body: formData
     })
-        .then(response => response.json())
-        .then(data => {
-            const resultado = data.resultado;
-            const mensagem = resultado === 1 ? "⚠️ Equipamento em falha" : "✅ Equipamento em operação normal";
-            alert(mensagem);
-            limparCampos();
-            document.getElementById("tabelaEquipamentos").innerHTML = `
-                <tr>
-                    <th>Nome</th><th>Ar (K)</th><th>Processo (K)</th><th>RPM</th><th>Torque</th><th>Desgaste</th>
-                    <th>TWF</th><th>HDF</th><th>PWF</th><th>OSF</th><th>RNF</th><th>Diagnóstico</th><th>Remover</th>
-                </tr>`;
-            carregarEquipamentos();
-        });
+    .then(response => response.json())
+    .then(data => {
+        const resultado = data.resultado;
+        const mensagem = resultado === 1 ? "⚠️ Equipamento em falha" : "✅ Equipamento em operação normal";
+        alert(mensagem);
+        limparCampos();
+        document.getElementById("tabelaEquipamentos").innerHTML = `
+            <tr>
+                <th>Nome</th><th>Ar (K)</th><th>Processo (K)</th><th>RPM</th><th>Torque</th><th>Desgaste</th>
+                <th>TWF</th><th>HDF</th><th>PWF</th><th>OSF</th><th>RNF</th><th>Diagnóstico</th><th>Remover</th>
+            </tr>`;
+        carregarEquipamentos();
+    });
 }
 
 // Adiciona linha à tabela com botão deletar
@@ -70,17 +73,17 @@ function inserirTabela(e) {
 // Remove equipamento por ID
 function removerEquipamento(id) {
     if (!confirm("Tem certeza que deseja remover este registro?")) return;
-    fetch(`http://127.0.0.1:5000/equipamento?id=${id}`, {
+    fetch(`${API_BASE}/equipamento?id=${id}`, {
         method: "DELETE"
     })
-        .then(() => {
-            document.getElementById("tabelaEquipamentos").innerHTML = `
-                <tr>
-                    <th>Nome</th><th>Ar (K)</th><th>Processo (K)</th><th>RPM</th><th>Torque</th><th>Desgaste</th>
-                    <th>TWF</th><th>HDF</th><th>PWF</th><th>OSF</th><th>RNF</th><th>Diagnóstico</th><th>Remover</th>
-                </tr>`;
-            carregarEquipamentos();
-        });
+    .then(() => {
+        document.getElementById("tabelaEquipamentos").innerHTML = `
+            <tr>
+                <th>Nome</th><th>Ar (K)</th><th>Processo (K)</th><th>RPM</th><th>Torque</th><th>Desgaste</th>
+                <th>TWF</th><th>HDF</th><th>PWF</th><th>OSF</th><th>RNF</th><th>Diagnóstico</th><th>Remover</th>
+            </tr>`;
+        carregarEquipamentos();
+    });
 }
 
 // Limpa inputs
