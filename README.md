@@ -203,7 +203,9 @@ Este fluxograma resume:
 
 ## ✅ Conclusão
 
-Este MVP demonstrou a aplicação prática de técnicas de Machine Learning em manutenção preditiva, integrando ciência de dados, engenharia de software e segurança. A arquitetura modular permite expansão futura e reuso em ambientes industriais reais.
+Este MVP demonstrou a aplicação prática de técnicas de Machine Learning em manutenção preditiva, integrando ciência de dados, engenharia de software e segurança operacional. A arquitetura modular adotada permite fácil expansão e reutilização em ambientes industriais reais.
+
+Com a utilização de dados reais de operação, seria possível treinar modelos mais específicos e precisos para predição de falhas, permitindo antecipar paradas não planejadas. Isso resultaria diretamente em ganhos de segurança, eficiência e retorno econômico para a planta de produção.
 
 ---
 
