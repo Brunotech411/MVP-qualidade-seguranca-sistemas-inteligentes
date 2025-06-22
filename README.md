@@ -2,10 +2,10 @@
 
 Este projeto é um MVP que aplica **Machine Learning em manutenção preditiva industrial**, utilizando o dataset **AI4I 2020 Predictive Maintenance**. A solução foi desenvolvida com:
 
-- **Python + FastAPI** (API RESTful)
-- **HTML + JS** (front-end simples)
-- **Jupyter Notebook** (modelo de ML)
-- **Sklearn + Joblib** (treinamento/exportação)
+- **Python + Flask** (API RESTful com SQLite)
+- **HTML + JS** (frontend local)
+- **Modelo .pkl** (treinado via Jupyter/Colab)
+- **Testes com requests**
 
 ---
 
@@ -14,18 +14,16 @@ Este projeto é um MVP que aplica **Machine Learning em manutenção preditiva i
 ```
 MVP-qualidade-seguranca-sistemas-inteligentes
 │
-├── api/                    # Back-end FastAPI
-│   ├── app.py              # Rota principal
-│   ├── logger.py           # Logs de predição
-│   ├── model/              # insira o modelo .pkl treinado no colab
-│   └── schemas/            # Validação com Pydantic
+│── assets/                 # Imagens e fluxograma
 │
 ├── data/
 │   └── ai4i2020            # dataset
 │
-├── assets/                 # Imagens e fluxograma
-├── frontend/               # HTML + JS para consumo da API
-│   └── index.html
+├── flask/                  # Back-end FlaskAPI
+│   ├── static/             # JS + CSS
+│   ├── templates/          # index.html
+│   ├── app.py              # Rota principal
+│   └── test_api_flask.py   # Teste funcional com requests
 │
 ├── Predictive_Maintenance_MVP_Bruno.ipynb  # Notebook de treino
 ├── requirements.txt        # Dependências da aplicação
@@ -37,40 +35,25 @@ MVP-qualidade-seguranca-sistemas-inteligentes
 
 ## 📦 Requisitos
 
-- annotated-types==0.7.0
-- anyio==4.9.0
+- blinker==1.9.0
 - certifi==2025.6.15
+- charset-normalizer==3.4.2
 - click==8.2.1
 - colorama==0.4.6
-- fastapi==0.110.0
-- h11==0.16.0
-- httpcore==1.0.9
-- httpx==0.27.0
+- Flask==2.3.3
+- Flask-Cors==4.0.0
 - idna==3.10
-- iniconfig==2.1.0
-- joblib==1.4.2
+- itsdangerous==2.2.0
+- Jinja2==3.1.6
+- joblib==1.5.1
+- MarkupSafe==3.0.2
 - numpy==1.26.4
-- packaging==25.0
-- pandas==2.3.0
-- pluggy==1.6.0
-- pydantic==2.7.1
-- pydantic_core==2.18.2
-- Pygments==2.19.1
-- pytest==8.2.1
-- pytest-asyncio==1.0.0
-- python-dateutil==2.9.0.post0
-- pytz==2025.2
+- requests==2.31.0
 - scikit-learn==1.6.1
-- scipy==1.15.3
-- six==1.17.0
-- sniffio==1.3.1
-- starlette==0.36.3
+- scipy==1.16.0
 - threadpoolctl==3.6.0
-- typing-inspection==0.4.1
-- typing_extensions==4.14.0
-- tzdata==2025.2
-- uvicorn==0.29.0
-
+- urllib3==2.5.0
+- Werkzeug==3.1.3
 
 ---
 
@@ -93,7 +76,7 @@ O mesmo arquivo se encontra na pasta data e pode ser utilizado para carregar no 
 4. O modelo será treinado e deverá ser salvo localmente como:
 
 ```bash
-api/model/modelo_manutencao.pkl
+flask/modelo_manutencao.pkl
 ```
 Obs: atenção! salve o arquivo na pasta "model"
 ---
@@ -116,20 +99,19 @@ pip install -r requirements.txt
 3. Rode a aplicação:
 
 ```bash
-uvicorn api.app:app --reload
+python app.py
+
 ```
 
-4. Acesse a documentação da API:
-
-🔗 http://127.0.0.1:8000/docs
+4. Acesse a aplicação HTML pelo arquivo `index.html`
 
 ---
 
 ## 🌐 Front-end (HTML/JS)
 
-1. Abra `frontend/index.html` no navegador
+1. Abra `flask/templates/index.html` no navegador
 2. Insira os valores desejados
-3. Clique em "Enviar" para obter a predição via API FastAPI
+3. Clique em "Diagnosticar" para enviar os dados à API Flask e obter o resultado
 
 ---
 
@@ -140,7 +122,7 @@ O modelo retorna duas saídas possíveis:
 - `0` → **Operação normal** (sem falhas detectadas).
 - `1` → **Falha detectada** (algum dos modos de falha ocorreu).
 
-### Exemplo de requisição sem falha (via Swagger ou JSON):
+### Exemplo de payload JSON usado no back-end (via JS)
 
 ```json
 {
@@ -211,7 +193,7 @@ Este fluxograma resume:
 
 - A leitura do dataset
 - O treinamento e exportação do modelo `.pkl`
-- A estrutura da API FastAPI e o endpoint de predição
+- A estrutura da API Flask e os endpoints de predição, listagem e remoção
 
 ---
 
@@ -224,4 +206,3 @@ Este MVP demonstrou a aplicação prática de técnicas de Machine Learning em m
 ## 📄 Referências
 
 - Dataset AI4I 2020: UCI Repository
-- FastAPI Docs: [https://fastapi.tiangolo.com/]
