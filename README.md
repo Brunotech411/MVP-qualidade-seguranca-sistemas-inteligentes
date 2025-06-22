@@ -129,7 +129,35 @@ O modelo retorna duas saídas possíveis:
 - `0` → **Operação normal** (sem falhas detectadas).
 - `1` → **Falha detectada** (algum dos modos de falha ocorreu).
 
-### Exemplo de entrada preenchida via formulário HTML:
+### Exemplo de entrada preenchida via formulário HTML (Operação normal):
+
+| Campo                    | Valor Exemplo |
+|--------------------------|---------------|
+| Temp. do Ar (K)          | 290           |
+| Temp. do Processo (K)    | 310           |
+| RPM                      | 1260          |
+| Torque (Nm)              | 45            |
+| Desgaste (min)           | 180           |
+| TWF                      | 0             |
+| HDF                      | 0             |
+| PWF                      | 0             |
+| OSF                      | 0             |                                                                      
+| RNF                      | 0             |
+
+
+### Exemplo de resposta gerada pela API (renderizada no navegador):
+
+```json
+{
+  "resultado": 0,
+  "descricao": "Operação normal"
+}
+```
+
+> Resultado esperado: `0` com descrição **"Operação normal"**
+
+
+### Exemplo de entrada preenchida via formulário HTML (Falha detectada):
 
 | Campo                    | Valor Exemplo |
 |--------------------------|---------------|
@@ -141,7 +169,7 @@ O modelo retorna duas saídas possíveis:
 | TWF                      | 1             |
 | HDF                      | 0             |
 | PWF                      | 0             |
-| OSF                      | 0             |
+| OSF                      | 0             |                                                                      
 | RNF                      | 0             |
 
 > ⚠️ Neste exemplo, o valor `1` em **TWF** (Tool Wear Failure) indica falha por desgaste da ferramenta.
