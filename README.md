@@ -129,64 +129,33 @@ O modelo retorna duas saídas possíveis:
 - `0` → **Operação normal** (sem falhas detectadas).
 - `1` → **Falha detectada** (algum dos modos de falha ocorreu).
 
-### Exemplo de payload JSON usado no back-end (via JS)
+### Exemplo de entrada preenchida via formulário HTML:
 
-```json
-{
-  "air_temperature_k": 298.0,
-  "process_temperature_k": 302.0,
-  "rotational_speed_rpm": 1280.0,
-  "torque_nm": 63.0,
-  "tool_wear_min": 212.0,
-  "twf": 0,
-  "hdf": 0,
-  "pwf": 0,
-  "osf": 0,
-  "rnf": 0
-}
+| Campo                    | Valor Exemplo |
+|--------------------------|---------------|
+| Temp. do Ar (K)          | 295           |
+| Temp. do Processo (K)    | 303           |
+| RPM                      | 1370          |
+| Torque (Nm)              | 60            |
+| Desgaste (min)           | 210           |
+| TWF                      | 1             |
+| HDF                      | 0             |
+| PWF                      | 0             |
+| OSF                      | 0             |
+| RNF                      | 0             |
 
-```
+> ⚠️ Neste exemplo, o valor `1` em **TWF** (Tool Wear Failure) indica falha por desgaste da ferramenta.
 
-### Exemplo de resposta da API:
-
-```json
-{
-  "resultado": 0,
-  "descricao": "Operação normal"
-}
-```
-
-> Resultado esperado: `0` com descrição "Operação normal"
-
-### Exemplo de requisição com falha (via Swagger ou JSON):
-
-```json
-{
-  "air_temperature_k": 295.0,
-  "process_temperature_k": 303.0,
-  "rotational_speed_rpm": 1370.0,
-  "torque_nm": 60.0,
-  "tool_wear_min": 210.0,
-  "twf": 1,
-  "hdf": 0,
-  "pwf": 0,
-  "osf": 0,
-  "rnf": 0
-}
-
-```
-
-### Exemplo de resposta da API:
+### Exemplo de resposta gerada pela API (renderizada no navegador):
 
 ```json
 {
   "resultado": 1,
   "descricao": "Falha detectada"
 }
-
 ```
 
-> Resultado esperado: `1` com descrição "Falha detectada" (simulando falha por tool wear - TWF)
+> Resultado esperado: `1` com descrição **"Falha detectada"**
 
 ---
 
