@@ -72,7 +72,8 @@ O dataset utilizado é o **AI4I 2020 Predictive Maintenance**, disponível em:
 🔗 https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset
 
 Baixe o arquivo CSV (`ai4i2020.csv`) e utilize no notebook diretamente no Colab.
-O mesmo arquivo se encontra na pasta data e pode ser utilizado para carregar no notebook Colab
+
+O mesmo arquivo também se encontra na pasta data e pode ser utilizado para carregar no notebook Colab.
 
 ---
 
