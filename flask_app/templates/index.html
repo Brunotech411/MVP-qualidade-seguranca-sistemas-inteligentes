@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Diagnóstico de Equipamentos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="title">
+            <h2>Sistema de Diagnóstico de Equipamentos</h2>
+            <p>Preencha os dados abaixo para verificar o estado do equipamento.</p>
+        </div>
+    </header>
+
+    <section class="newItem">
+        <input type="text" id="nome" placeholder="Nome do Equipamento">
+        <input type="text" id="temperatura_ar" placeholder="Temp. do Ar (K)">
+        <input type="text" id="temperatura_processo" placeholder="Temp. do Processo (K)">
+        <input type="text" id="rpm" placeholder="RPM">
+        <input type="text" id="torque" placeholder="Torque (Nm)">
+        <input type="text" id="desgaste_ferramenta" placeholder="Desgaste (min)">
+        <input type="text" id="twf" placeholder="TWF">
+        <input type="text" id="hdf" placeholder="HDF">
+        <input type="text" id="pwf" placeholder="PWF">
+        <input type="text" id="osf" placeholder="OSF">
+        <input type="text" id="rnf" placeholder="RNF">
+        <button type="button" onclick="novoEquipamento()" class="addBtn">Diagnosticar</button>
+    </section>
+
+    <section class="items">
+        <div class="table-container">
+            <table id="tabelaEquipamentos">
+                <tr>
+                    <th>Nome</th>
+                    <th>Ar (K)</th>
+                    <th>Processo (K)</th>
+                    <th>RPM</th>
+                    <th>Torque</th>
+                    <th>Desgaste</th>
+                    <th>TWF</th>
+                    <th>HDF</th>
+                    <th>PWF</th>
+                    <th>OSF</th>
+                    <th>RNF</th>
+                    <th>Diagnóstico</th>
+                    <th>Remover</th>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
