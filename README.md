@@ -23,12 +23,10 @@ MVP-qualidade-seguranca-sistemas-inteligentes
 ├── flask_app/                              # Back-end FlaskAPI
 │   ├── static/                             # JS + CSS
 │   │   ├── scripts.js 
-│   │   └── styles.css 
-│   │
-│   ├── templates/                          # Template HTML principal
-│   │   └── index.html 
+│   │   └── styles.css  
 │   │
 │   ├── app.py                              # Aplicação Flask
+│   ├── index.html                          # Front-end HTML 
 │   ├── modelo_manutencao.pkl               # ⚠️ Adicionar manualmente após gerar via notebook Colab
 │   └── test_api_flask.py                   # Testes com requests
 │
