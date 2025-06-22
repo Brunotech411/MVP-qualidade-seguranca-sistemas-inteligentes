@@ -77,7 +77,10 @@ O mesmo arquivo também se encontra na pasta data e pode ser utilizado para carr
 
 ## 📈 Geração do Modelo `.pkl`
 
-1. Acesse o notebook `Predictive_Maintenance_MVP_Bruno.ipynb` (disponível na raiz do projeto e também no link de envio do MVP)
+1. Acesse o notebook `Predictive_Maintenance_MVP_Bruno.ipynb` (disponível na raiz do projeto ou via Colab):
+
+   🔗 https://colab.research.google.com/drive/127X1p2tIORrZEeTUY5LN_jjmOMQS-Qa0
+
 2. Execute todas as células diretamente no Colab (em ordem)
 3. Na etapa 2 será solicitado o carregamento do arquivo ai4i2020.csv
 4. O modelo será treinado e deverá ser salvo localmente como:
@@ -198,6 +201,18 @@ Este fluxograma resume:
 - A leitura do dataset
 - O treinamento e exportação do modelo `.pkl`
 - A estrutura da API Flask e os endpoints de predição, listagem e remoção
+
+---
+
+## 🔒 Segurança da Informação e Considerações de Cybersecurity
+
+Embora o foco do MVP esteja na demonstração técnica da predição de falhas, é essencial considerar aspectos de **segurança da informação**, especialmente em contextos industriais. Em um cenário real, a API Flask estaria sujeita a boas práticas como:
+
+- Uso de autenticação e tokens de acesso para evitar requisições maliciosas;
+- Sanitização de dados de entrada para evitar **ataques por injeção**;
+- Conexão segura com banco de dados (evitando arquivos locais expostos como `SQLite`);
+- Uso de HTTPS e deploy em ambiente isolado com firewall;
+- Técnicas de **anonimização** de dados sensíveis, para proteger informações operacionais.
 
 ---
 
