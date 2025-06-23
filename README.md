@@ -113,7 +113,7 @@ cd flask_app
 
 ```bash
 python -m venv venv
-venv\Scripts\activate    # Windows
+venv\Scripts\activate
 ```
 
 3. Instale as dependências:
