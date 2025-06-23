@@ -49,15 +49,25 @@ MVP-qualidade-seguranca-sistemas-inteligentes
 - Flask==2.3.3
 - Flask-Cors==4.0.0
 - idna==3.10
+- iniconfig==2.1.0
 - itsdangerous==2.2.0
 - Jinja2==3.1.6
 - joblib==1.5.1
 - MarkupSafe==3.0.2
 - numpy==1.26.4
+- packaging==25.0
+- pandas==2.3.0
+- pluggy==1.6.0
+- Pygments==2.19.2
+- pytest==8.4.1
+- python-dateutil==2.9.0.post0
+- pytz==2025.2
 - requests==2.31.0
 - scikit-learn==1.6.1
 - scipy==1.16.0
+- six==1.17.0
 - threadpoolctl==3.6.0
+- tzdata==2025.2
 - urllib3==2.5.0
 - Werkzeug==3.1.3
 
