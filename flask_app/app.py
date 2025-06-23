@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, render_template
+import pandas as pd
 from flask_cors import CORS
 import sqlite3
 import pickle
@@ -54,8 +55,18 @@ def add_equipamento():
     rnf = int(data['rnf'])
 
     # 🔍 Predição com modelo real
-    entrada = np.array([[temperatura_ar, temperatura_processo, rpm, torque, desgaste_ferramenta,
-                         twf, hdf, pwf, osf, rnf]])
+    entrada = pd.DataFrame([{
+            'air_temperature_k': temperatura_ar,
+            'process_temperature_k': temperatura_processo,
+            'rotational_speed_rpm': rpm,
+            'torque_nm': torque,
+            'tool_wear_min': desgaste_ferramenta,
+            'twf': twf,
+            'hdf': hdf,
+            'pwf': pwf,
+            'osf': osf,
+            'rnf': rnf
+        }])
     resultado = int(modelo.predict(entrada)[0])
     descricao = "Operação normal" if resultado == 0 else "Falha detectada"
 

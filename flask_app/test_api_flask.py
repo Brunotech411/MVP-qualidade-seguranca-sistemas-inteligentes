@@ -1,7 +1,9 @@
-import requests
+from app import app
+import json
 
 def test_post_equipamento():
-    url = "http://127.0.0.1:5000/equipamento"
+    client = app.test_client()
+
     payload = {
         "nome": "Equipamento Teste",
         "temperatura_ar": 300,
@@ -16,8 +18,10 @@ def test_post_equipamento():
         "rnf": 0
     }
 
-    response = requests.post(url, data=payload)
-    assert response.status_code == 200, f"Erro: {response.status_code}"
-    resultado = response.json()
-    assert "resultado" in resultado, "Campo 'resultado' ausente na resposta"
-    assert resultado["resultado"] in [0, 1], f"Valor inesperado: {resultado['resultado']}"
+    response = client.post("/equipamento", data=payload)
+    
+    assert response.status_code == 200
+
+    resposta_json = json.loads(response.data.decode("utf-8"))
+    assert resposta_json["descricao"] == "Operação normal"
+    assert resposta_json["resultado"] == 0

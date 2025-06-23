@@ -28,13 +28,13 @@ MVP-qualidade-seguranca-sistemas-inteligentes
 │   ├── app.py                              # Aplicação Flask
 │   ├── index.html                          # Front-end HTML 
 │   ├── modelo_manutencao.pkl               # ⚠️ Adicionar manualmente após gerar via notebook Colab
+│   ├── requirements.txt                    # Dependências da aplicação
 │   └── test_api_flask.py                   # Testes com requests
 │
 ├── .gitattributes
 ├── .gitignore                              # Arquivos ignorados
 ├── Predictive_Maintenance_MVP_Bruno.ipynb  # Notebook de treino e exportação
-├── README.md                               # Instruções do projeto
-└── requirements.txt                        # Dependências da aplicação
+└── README.md                               # Instruções do projeto
 ```
 
 ---
@@ -93,27 +93,32 @@ flask_app/modelo_manutencao.pkl
 
 ## 🚀 Executando a API
 
-1. Crie e ative o ambiente virtual:
+1. Acesse a pasta onde está o back-end Flask:
+
+```bash
+cd flask_app
+```
+
+2. Crie e ative o ambiente virtual:
 
 ```bash
 python -m venv venv
 venv\Scripts\activate    # Windows
 ```
 
-2. Instale as dependências:
+3. Instale as dependências:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Rode a aplicação:
+4. Rode a aplicação:
 
 ```bash
 python app.py
-
 ```
 
-4. Acesse a aplicação HTML pelo arquivo `index.html`
+5. Acesse a interface HTML com o arquivo `index.html` ou envie requisições para os endpoints via JS/Python.
 
 ---
 
@@ -122,6 +127,27 @@ python app.py
 1. Abra `flask/templates/index.html` no navegador
 2. Insira os valores desejados
 3. Clique em "Diagnosticar" para enviar os dados à API Flask e obter o resultado
+
+---
+
+## 🧪 Executando os testes com Pytest
+
+Para validar se a API está funcionando corretamente, execute o teste automático:
+
+1. Certifique-se de estar com o ambiente virtual ativo:
+
+```bash
+cd flask_app
+venv\Scripts\activate
+```
+
+2. Rode o comando:
+
+```bash
+pytest test_api_flask.py -v
+```
+
+> O teste envia uma requisição de exemplo para o endpoint `/equipamento` e valida se a resposta da API está correta.
 
 ---
 
