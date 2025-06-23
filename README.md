@@ -140,26 +140,6 @@ python app.py
 
 ---
 
-## 🧪 Executando os testes com Pytest
-
-Para validar se a API está funcionando corretamente, execute o teste automático:
-
-1. Certifique-se de estar com o ambiente virtual ativo:
-
-```bash
-cd flask_app
-venv\Scripts\activate
-```
-
-2. Rode o comando:
-
-```bash
-pytest test_api_flask.py -v
-```
-
-> O teste envia uma requisição de exemplo para o endpoint `/equipamento` e valida se a resposta da API está correta.
-
----
 
 ## 📊 Lógica de Predição
 
@@ -223,6 +203,27 @@ O modelo retorna duas saídas possíveis:
 ```
 
 > Resultado esperado: `1` com descrição **"Falha detectada"**
+
+---
+
+## 🧪 Executando os testes com Pytest
+
+Para validar se a API está funcionando corretamente, execute o teste automático:
+
+1. Certifique-se de estar com o ambiente virtual ativo:
+
+```bash
+cd flask_app
+venv\Scripts\activate
+```
+
+2. Rode o comando:
+
+```bash
+pytest test_api_flask.py -v
+```
+
+> O teste envia uma requisição de exemplo para o endpoint `/equipamento` e valida se a resposta da API está correta.
 
 ---
 
