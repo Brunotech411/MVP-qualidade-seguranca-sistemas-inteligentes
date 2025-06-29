@@ -1,94 +1,159 @@
-// 🔗 URL base da API
-const API_BASE = "http://127.0.0.1:5000";
-
-// Carregar dados ao iniciar
-document.addEventListener("DOMContentLoaded", function () {
+// Executa quando a página é carregada: exibe os dados atuais da tabela
+window.onload = function () {
     carregarEquipamentos();
-});
+};
 
-// Carrega equipamentos salvos no banco
+// Função para capturar os dados do formulário e enviar para a API
+function novoEquipamento() {
+    const campos = [
+        "nome", "temperatura_ar", "temperatura_processo", "rpm",
+        "torque", "desgaste_ferramenta", "twf", "hdf", "pwf", "osf", "rnf"
+    ];
+    const data = {};
+    let incompleto = false;
+
+    // Valida se todos os campos foram preenchidos
+    campos.forEach(campo => {
+        const valor = document.getElementById(campo).value;
+        if (valor === "") {
+            incompleto = true;
+        }
+        data[campo] = valor;
+    });
+
+    // Mostra mensagem se houver campos vazios
+    if (incompleto) {
+        document.getElementById("mensagem-pesquisa").textContent = "⚠️ Preencha todos os campos antes de diagnosticar.";
+        return;
+    }
+
+    // Envia os dados via POST para a API
+    fetch('/api/adicionar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            ...data,
+            temperatura_ar: parseFloat(data.temperatura_ar),
+            temperatura_processo: parseFloat(data.temperatura_processo),
+            rpm: parseInt(data.rpm),
+            torque: parseFloat(data.torque),
+            desgaste_ferramenta: parseInt(data.desgaste_ferramenta),
+            twf: parseInt(data.twf),
+            hdf: parseInt(data.hdf),
+            pwf: parseInt(data.pwf),
+            osf: parseInt(data.osf),
+            rnf: parseInt(data.rnf)
+        })
+    })
+    .then(res => res.json())
+    .then(res => {
+        // Mostra mensagem de confirmação e resultado da predição
+        document.getElementById("mensagem-pesquisa").textContent = res.message || "Diagnóstico realizado.";
+        carregarEquipamentos();
+        alert(res.falha_detectada ? "⚠️ Falha detectada" : "✅ Operação normal");
+
+        // Limpa os campos do formulário
+        campos.forEach(campo => document.getElementById(campo).value = "");
+    })
+    .catch(err => console.error('Erro:', err));
+}
+
+// Busca todos os registros e atualiza a tabela HTML
 function carregarEquipamentos() {
-    fetch(`${API_BASE}/equipamentos`)
-        .then(response => response.json())
-        .then(data => {
-            data.equipamentos.forEach(e => inserirTabela(e));
+    fetch('/api/listar')
+        .then(res => res.json())
+        .then(dados => {
+            const tabela = document.querySelector("#tabelaEquipamentos tbody");
+            tabela.innerHTML = '';
+            dados.forEach(item => {
+                const row = tabela.insertRow();
+                for (let campo of [
+                    'nome','temperatura_ar','temperatura_processo','rpm',
+                    'torque','desgaste_ferramenta','twf','hdf','pwf','osf','rnf'
+                ]) {
+                    let cell = row.insertCell();
+                    cell.textContent = item[campo];
+                }
+
+                // Coluna de diagnóstico
+                const diag = row.insertCell();
+                diag.textContent = item.resultado ? "Falha" : "Normal";
+
+                // Botão de exclusão
+                const del = row.insertCell();
+                const btn = document.createElement('button');
+                btn.textContent = "Delete";
+                btn.onclick = () => deletarEquipamento(item.nome);
+                del.appendChild(btn);
+            });
         });
 }
 
-// Envia equipamento para diagnóstico e salva no banco
-function novoEquipamento() {
-    const formData = new FormData();
-    formData.append("nome", document.getElementById("nome").value);
-    formData.append("temperatura_ar", document.getElementById("temperatura_ar").value);
-    formData.append("temperatura_processo", document.getElementById("temperatura_processo").value);
-    formData.append("rpm", document.getElementById("rpm").value);
-    formData.append("torque", document.getElementById("torque").value);
-    formData.append("desgaste_ferramenta", document.getElementById("desgaste_ferramenta").value);
-    formData.append("twf", document.getElementById("twf").value);
-    formData.append("hdf", document.getElementById("hdf").value);
-    formData.append("pwf", document.getElementById("pwf").value);
-    formData.append("osf", document.getElementById("osf").value);
-    formData.append("rnf", document.getElementById("rnf").value);
+// Chama a API para deletar equipamento pelo nome
+function deletarEquipamento(nome) {
+    fetch(`/api/deletar/${nome}`, { method: 'DELETE' })
+        .then(res => res.json())
+        .then(res => {
+            alert(res.message);
+            carregarEquipamentos();
+        });
+}
 
-    fetch(`${API_BASE}/equipamento`, {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        const resultado = data.resultado;
-        const mensagem = resultado === 1 ? "⚠️ Equipamento em falha" : "✅ Equipamento em operação normal";
-        alert(mensagem);
-        limparCampos();
-        document.getElementById("tabelaEquipamentos").innerHTML = `
-            <tr>
-                <th>Nome</th><th>Ar (K)</th><th>Processo (K)</th><th>RPM</th><th>Torque</th><th>Desgaste</th>
-                <th>TWF</th><th>HDF</th><th>PWF</th><th>OSF</th><th>RNF</th><th>Diagnóstico</th><th>Remover</th>
-            </tr>`;
+// Alterna a visibilidade da tabela entre visível e oculto
+function toggleTabela() {
+    const botao = document.querySelector('.listar-btn');
+    const container = document.getElementById("tabela-container");
+    const atual = window.getComputedStyle(container).display;
+    if (atual === "none") {
         carregarEquipamentos();
-    });
+        container.style.display = "block";
+        botao.textContent = 'Ocultar Equipamentos';
+    } else {
+        container.style.display = "none";
+        botao.textContent = 'Listar Equipamentos';
+    }
 }
 
-// Adiciona linha à tabela com botão deletar
-function inserirTabela(e) {
-    const tabela = document.getElementById("tabelaEquipamentos");
-    const row = tabela.insertRow();
-    row.innerHTML = `
-        <td>${e.nome}</td>
-        <td>${e.temperatura_ar}</td>
-        <td>${e.temperatura_processo}</td>
-        <td>${e.rpm}</td>
-        <td>${e.torque}</td>
-        <td>${e.desgaste_ferramenta}</td>
-        <td>${e.twf}</td>
-        <td>${e.hdf}</td>
-        <td>${e.pwf}</td>
-        <td>${e.osf}</td>
-        <td>${e.rnf}</td>
-        <td style="font-weight:bold; color:${e.resultado === 1 ? 'red' : 'green'}">${e.resultado === 1 ? 'FALHA' : 'NORMAL'}</td>
-        <td><button onclick="removerEquipamento(${e.id})" class="close">×</button></td>
-    `;
-}
+// Pesquisa registros por nome digitado no campo
+function pesquisarEquipamento() {
+    const nome = document.getElementById("nome").value;
+    if (!nome) {
+        document.getElementById("mensagem-pesquisa").textContent = "⚠️ Digite um nome para pesquisar.";
+        return;
+    }
 
-// Remove equipamento por ID
-function removerEquipamento(id) {
-    if (!confirm("Tem certeza que deseja remover este registro?")) return;
-    fetch(`${API_BASE}/equipamento?id=${id}`, {
-        method: "DELETE"
-    })
-    .then(() => {
-        document.getElementById("tabelaEquipamentos").innerHTML = `
-            <tr>
-                <th>Nome</th><th>Ar (K)</th><th>Processo (K)</th><th>RPM</th><th>Torque</th><th>Desgaste</th>
-                <th>TWF</th><th>HDF</th><th>PWF</th><th>OSF</th><th>RNF</th><th>Diagnóstico</th><th>Remover</th>
-            </tr>`;
-        carregarEquipamentos();
-    });
-}
+    document.getElementById("mensagem-pesquisa").textContent = "";
+    fetch(`/api/pesquisar/${nome}`)
+        .then(res => {
+            if (!res.ok) throw new Error("Equipamento não encontrado");
+            return res.json();
+        })
+        .then(dados => {
+            const tabela = document.querySelector("#tabelaEquipamentos tbody");
+            tabela.innerHTML = '';
+            dados.forEach(item => {
+                const row = tabela.insertRow();
+                for (let campo of [
+                    'nome','temperatura_ar','temperatura_processo','rpm',
+                    'torque','desgaste_ferramenta','twf','hdf','pwf','osf','rnf'
+                ]) {
+                    let cell = row.insertCell();
+                    cell.textContent = item[campo];
+                }
 
-// Limpa inputs
-function limparCampos() {
-    const campos = ["nome", "temperatura_ar", "temperatura_processo", "rpm", "torque",
-                    "desgaste_ferramenta", "twf", "hdf", "pwf", "osf", "rnf"];
-    campos.forEach(id => document.getElementById(id).value = "");
+                const diag = row.insertCell();
+                diag.textContent = item.resultado ? "Falha" : "Normal";
+
+                const del = row.insertCell();
+                const btn = document.createElement('button');
+                btn.textContent = "Delete";
+                btn.onclick = () => deletarEquipamento(item.nome);
+                del.appendChild(btn);
+            });
+
+            // Mostra a tabela e atualiza botão após pesquisa
+            document.getElementById("tabela-container").style.display = "block";
+            document.querySelector(".listar-btn").textContent = "Ocultar Equipamentos";
+        })
+        .catch(err => document.getElementById("mensagem-pesquisa").textContent = "❌ " + err.message);
 }

@@ -1,63 +1,127 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #e8e3cb;
+/* Estilo geral da página e fonte */
+body, html {
+    height: 100%;
     margin: 0;
-    padding: 0;
-}
-header {
-    background-color: #1e1b14;
+    font-family: 'Segoe UI', sans-serif;
     color: white;
-    padding: 20px;
-    text-align: center;
 }
-section.newItem {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    padding: 20px;
+
+/* Vídeo de fundo fixado atrás do conteúdo */
+#bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
 }
-section.newItem input, .addBtn {
-    padding: 10px;
-    font-size: 14px;
-}
-.addBtn {
-    background-color: #1e1b14;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-.label-input {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 12px;
-}
-.label-input label {
-    margin-left: 4px;
-    margin-bottom: 2px;
-    font-weight: bold;
-}
-.table-container {
-    padding: 20px;
-}
-table {
+
+/* Camada de escurecimento sobre o vídeo para melhorar a legibilidade */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    border-collapse: collapse;
-    text-align: center;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
 }
-th, td {
+
+/* Contêiner principal acima do vídeo e overlay */
+.container {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+}
+
+/* Título principal */
+header h1 {
+    font-size: 32px;
+    margin-bottom: 0;
+}
+
+/* Estilo base para inputs e botões */
+input, button {
+    margin: 5px;
     padding: 8px;
-    border: 1px solid #ccc;
+    border-radius: 4px;
+    border: none;
 }
-th {
-    background-color: #1e1b14;
+
+/* Estilo padrão para botões */
+button {
+    background-color: #00aaff;
     color: white;
+    cursor: pointer;
 }
-td button {
-    padding: 5px 10px;
-    background-color: red;
+
+button:hover {
+    background-color: #008ecc;
+}
+
+/* Estilo específico para o botão de listar equipamentos */
+.listar-btn {
+    background-color: purple;
     color: white;
     border: none;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 4px;
     cursor: pointer;
+}
+
+.listar-btn:hover {
+    background-color: indigo;
+}
+
+/* Estilo da tabela de equipamentos */
+table {
+    margin-top: 20px;
+    background: white;
+    color: black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* Estilo das células */
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+/* Cabeçalho da tabela */
+th {
+    background-color: #ddd;
+}
+
+/* Inicialmente oculta a tabela */
+#tabela-container {
+    display: none;
+}
+
+/* Alinhamento e margem do botão de lupa (pesquisa) */
+.lupa-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Estilo visual do botão de pesquisa centralizado */
+.lupa-central {
+    background-color: white;
+    color: black;
+    padding: 8px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    cursor: pointer;
+    width: 180px;
+    display: block;
+}
+
+.lupa-central:hover {
+    background-color: #f0f0f0;
 }

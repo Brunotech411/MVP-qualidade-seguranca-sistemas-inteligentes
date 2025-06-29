@@ -39,3 +39,12 @@ Thumbs.db
 
 # Arquivos do Git / SWAP
 *.swp
+
+# remover_vazios.py
+remover_vazios.py
+
+# Banco adicional (se aplicável)
+database.db
+
+# Log da aplicação
+api.log

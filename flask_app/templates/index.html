@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sistema de Diagnóstico de Equipamentos</title>
+
+    <!-- Importa o CSS do projeto -->
+    <link href="static/styles.css" rel="stylesheet"/>
+</head>
+<body>
+
+    <!-- Vídeo de fundo (silencioso e em loop) -->
+    <video autoplay muted loop id="bg-video">
+        <source src="static/background.mp4" type="video/mp4"/>
+    </video>
+
+    <!-- Sobreposição escura para contraste visual -->
+    <div class="overlay"></div>
+
+    <div class="container">
+        <header>
+            <h1>Sistema de Diagnóstico de Equipamentos</h1>
+            <p>Preencha os dados abaixo para verificar o estado do equipamento.</p>
+        </header>
+
+        <!-- Formulário de entrada de dados -->
+        <section class="form-section">
+            <input id="nome" placeholder="Nome do Equipamento" type="text"/>
+            <input id="temperatura_ar" placeholder="Temperatura do Ar (K)" type="number"/>
+            <input id="temperatura_processo" placeholder="Temperatura do Processo (K)" type="number"/>
+            <input id="rpm" placeholder="RPM" type="number"/>
+            <input id="torque" placeholder="Torque (Nm)" type="number"/>
+            <input id="desgaste_ferramenta" placeholder="Desgaste (min)" type="number"/>
+            <input id="twf" placeholder="TWF (Desgaste)" type="number"/>
+            <input id="hdf" placeholder="HDF (Dissipação Térmica)" type="number"/>
+            <input id="pwf" placeholder="PWF (Potência)" type="number"/>
+            <input id="osf" placeholder="OSF (Sobrecarga)" type="number"/>
+            <input id="rnf" placeholder="RNF (Falha aleatória)" type="number"/>
+
+            <!-- Botão para enviar os dados -->
+            <button onclick="novoEquipamento()">Diagnosticar</button>
+
+            <!-- Botão para listar/ocultar equipamentos -->
+            <button class="listar-btn" onclick="toggleTabela()">Listar Equipamentos</button>
+
+            <!-- Botão de pesquisa por nome -->
+            <br/>
+            <div class="lupa-container">
+                <button class="lupa-central" onclick="pesquisarEquipamento()">🔍 Pesquisar</button>
+            </div>
+        </section>
+
+        <!-- Tabela onde os registros serão exibidos -->
+        <section id="tabela-container">
+            <table id="tabelaEquipamentos">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Ar</th>
+                        <th>Processo</th>
+                        <th>RPM</th>
+                        <th>Torque</th>
+                        <th>Desgaste</th>
+                        <th>TWF</th>
+                        <th>HDF</th>
+                        <th>PWF</th>
+                        <th>OSF</th>
+                        <th>RNF</th>
+                        <th>Diagnóstico</th>
+                        <th>Remover</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <!-- Área de mensagens para feedback da pesquisa -->
+        <div id="mensagem-pesquisa" style="text-align: center; margin-top: 10px; font-weight: bold;"></div>
+    </div>
+
+    <!-- Importa o script JS principal -->
+    <script src="static/scripts.js"></script>
+</body>
+</html>
