@@ -22,11 +22,14 @@ MVP-qualidade-seguranca-sistemas-inteligentes
 │
 ├── flask_app/                              # Back-end FlaskAPI
 │   ├── static/                             # JS + CSS
+│   │   ├── background. mp4                 # Vídeo do browser
 │   │   ├── scripts.js 
 │   │   └── styles.css  
+│   │ 
+│   ├── templates/
+│   │   └── index.html                      # Front-end HTML
 │   │
-│   ├── app.py                              # Aplicação Flask
-│   ├── index.html                          # Front-end HTML 
+│   ├── app.py                              # Aplicação Flask 
 │   ├── modelo_manutencao.pkl               # ⚠️ Adicionar manualmente após gerar via notebook Colab
 │   ├── requirements.txt                    # Dependências da aplicação
 │   └── test_api_flask.py                   # Testes com requests
@@ -41,43 +44,57 @@ MVP-qualidade-seguranca-sistemas-inteligentes
 
 ## 📦 Requisitos
 
-- blinker==1.9.0
-- certifi==2025.6.15
-- charset-normalizer==3.4.2
-- click==8.2.1
-- colorama==0.4.6
-- Flask==2.3.3
-- Flask-Cors==4.0.0
-- idna==3.10
-- iniconfig==2.1.0
-- itsdangerous==2.2.0
-- Jinja2==3.1.6
-- joblib==1.5.1
-- MarkupSafe==3.0.2
-- numpy==1.26.4
-- packaging==25.0
-- pandas==2.3.0
-- pluggy==1.6.0
-- Pygments==2.19.2
-- pytest==8.4.1
-- python-dateutil==2.9.0.post0
-- pytz==2025.2
-- requests==2.31.0
-- scikit-learn==1.6.1
-- scipy==1.16.0
-- six==1.17.0
-- threadpoolctl==3.6.0
-- tzdata==2025.2
-- urllib3==2.5.0
-- Werkzeug==3.1.3
+annotated-types==0.7.0
+attrs==25.3.0
+blinker==1.9.0
+certifi==2025.6.15
+charset-normalizer==3.4.2
+click==8.2.1
+colorama==0.4.6
+flasgger==0.9.7.1
+Flask==2.3.3
+Flask-Cors==4.0.0
+flask-openapi3==4.2.0
+idna==3.10
+iniconfig==2.1.0
+itsdangerous==2.2.0
+Jinja2==3.1.6
+joblib==1.5.1
+jsonschema==4.24.0
+jsonschema-specifications==2025.4.1
+MarkupSafe==3.0.2
+mistune==3.1.3
+numpy==1.26.4
+packaging==25.0
+pandas==2.3.0
+pluggy==1.6.0
+pydantic==2.11.7
+pydantic_core==2.33.2
+Pygments==2.19.2
+pytest==8.4.1
+python-dateutil==2.9.0.post0
+pytz==2025.2
+PyYAML==6.0.2
+referencing==0.36.2
+requests==2.31.0
+rpds-py==0.25.1
+scikit-learn==1.6.1
+scipy==1.16.0
+six==1.17.0
+threadpoolctl==3.6.0
+typing-inspection==0.4.1
+typing_extensions==4.14.0
+tzdata==2025.2
+urllib3==2.5.0
+Werkzeug==3.1.3
 
 ---
 
-## 📥 Dataset
+## 📅 Dataset
 
 O dataset utilizado é o **AI4I 2020 Predictive Maintenance**, disponível em:
 
-🔗 https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset
+🔗 [https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset](https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset)
 
 Baixe o arquivo CSV (`ai4i2020.csv`) e utilize no notebook diretamente no Colab.
 
@@ -89,7 +106,7 @@ O mesmo arquivo também se encontra na pasta data e pode ser utilizado para carr
 
 1. Acesse o notebook `Predictive_Maintenance_MVP_Bruno.ipynb` (disponível na raiz do projeto ou via Colab):
 
-   🔗 https://colab.research.google.com/drive/127X1p2tIORrZEeTUY5LN_jjmOMQS-Qa0
+   🔗 [https://colab.research.google.com/drive/127X1p2tIORrZEeTUY5LN\_jjmOMQS-Qa0](https://colab.research.google.com/drive/127X1p2tIORrZEeTUY5LN_jjmOMQS-Qa0)
 
 2. Execute todas as células diretamente no Colab (em ordem)
 3. Na etapa 2 será solicitado o carregamento do arquivo ai4i2020.csv
@@ -113,7 +130,7 @@ cd flask_app
 
 ```bash
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate  # ou source venv/bin/activate no Linux/macOS
 ```
 
 3. Instale as dependências:
@@ -128,15 +145,14 @@ pip install -r requirements.txt
 python app.py
 ```
 
-5. Acesse a interface HTML com o arquivo `index.html` ou envie requisições para os endpoints via JS/Python.
-
 ---
 
-## 🌐 Front-end (HTML/JS)
+## 🌐 Acessando a Aplicação
 
-1. Abra `flask/templates/index.html` no navegador
-2. Insira os valores desejados
-3. Clique em "Diagnosticar" para enviar os dados à API Flask e obter o resultado
+- 🔍 Swagger (API): [`http://127.0.0.1:5000/apidocs`](http://127.0.0.1:5000/apidocs)
+- 🖥️ Front-end HTML: [`http://127.0.0.1:5000`](http://127.0.0.1:5000)
+
+> O botão "Diagnosticar" envia dados à API para gerar e salvar o diagnóstico. O botão "Listar Equipamentos" alterna entre mostrar/ocultar os registros. A lupa "Pesquisar" busca pelo nome.
 
 ---
 
@@ -148,7 +164,7 @@ O modelo retorna duas saídas possíveis:
 - `0` → **Operação normal** (sem falhas detectadas).
 - `1` → **Falha detectada** (algum dos modos de falha ocorreu).
 
-### Exemplo de entrada preenchida via formulário HTML (Operação normal):
+### Exemplo de entrada preenchida via formulário HTML / Swagger (Operação normal):
 
 | Campo                    | Valor Exemplo |
 |--------------------------|---------------|
