@@ -42,9 +42,9 @@ MVP-qualidade-seguranca-sistemas-inteligentes
 
 ---
 
-```
 ## 📦 Requisitos
 
+```
 annotated-types==0.7.0
 attrs==25.3.0
 blinker==1.9.0
