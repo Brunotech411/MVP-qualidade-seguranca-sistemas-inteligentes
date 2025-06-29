@@ -48,3 +48,7 @@ database.db
 
 # Log da aplicação
 api.log
+
+# arquivo criado por linters como hint ou htmlhint
+.hintrc
+
