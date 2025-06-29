@@ -16,7 +16,6 @@ venv/
 .env
 
 # Modelos salvos
-*.pkl
 *.joblib
 
 # Banco SQLite local
