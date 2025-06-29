@@ -42,6 +42,7 @@ MVP-qualidade-seguranca-sistemas-inteligentes
 
 ---
 
+```
 ## 📦 Requisitos
 
 annotated-types==0.7.0
@@ -87,6 +88,7 @@ typing_extensions==4.14.0
 tzdata==2025.2
 urllib3==2.5.0
 Werkzeug==3.1.3
+```
 
 ---
 
