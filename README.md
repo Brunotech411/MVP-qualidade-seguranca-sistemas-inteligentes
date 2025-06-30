@@ -224,24 +224,30 @@ O modelo retorna duas saídas possíveis:
 
 ---
 
-## 🧪 Executando os testes com Pytest
+## 🧪 Testes Automatizados com Pytest
 
-Para validar se a API está funcionando corretamente, execute o teste automático:
+Para validar o comportamento da API, foram implementados testes com o framework **pytest** no arquivo `test_api_flask.py`, abrangendo as seguintes funcionalidades:
 
-1. Certifique-se de estar com o ambiente virtual ativo:
+- ✅ `POST /api/adicionar` — Inserção de novo equipamento e retorno do diagnóstico
+- ✅ `GET /api/listar` — Retorna todos os equipamentos registrados
+- ✅ `GET /api/pesquisar/<nome>` — Pesquisa por nome parcial ou exato
+- ✅ `DELETE /api/deletar/<nome>` — Remove o equipamento especificado
+- ✅ Nome duplicado retorna erro 400 com mensagem adequada
+
+### ▶️ Como executar os testes
+
+> ⚠️ **Observação:** Certifique-se de ativar o ambiente virtual (`venv`) antes de executar os testes. Isso garante que o `pytest` e as dependências do projeto sejam executados no ambiente isolado correto.
 
 ```bash
+# Ative o ambiente virtual
 cd flask_app
-venv\Scripts\activate
-```
+venv\Scripts\activate  # ou source venv/bin/activate no Linux/macOS
 
-2. Rode o comando:
-
-```bash
+# Execute os testes com saída detalhada
 pytest test_api_flask.py -v
 ```
 
-> O teste envia uma requisição de exemplo para o endpoint `/equipamento` e valida se a resposta da API está correta.
+Todos os testes devem retornar `PASSED` indicando o correto funcionamento dos endpoints da API.
 
 ---
 
