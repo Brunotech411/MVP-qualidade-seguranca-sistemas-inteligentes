@@ -48,9 +48,47 @@ def pagina_inicial():
 def adicionar():
     """
     Adiciona novo equipamento e retorna diagnóstico
-    - Verifica se o nome já existe
-    - Executa predição com base nos campos binários de falha
-    - Armazena os dados no banco e retorna o diagnóstico
+    ---
+    tags:
+      - Equipamentos
+    consumes:
+      - application/json
+    parameters:
+      - in: body
+        name: corpo
+        required: true
+        schema:
+          type: object
+          required:
+            - nome
+          properties:
+            nome:
+              type: string
+            temperatura_ar:
+              type: number
+            temperatura_processo:
+              type: number
+            rpm:
+              type: integer
+            torque:
+              type: number
+            desgaste_ferramenta:
+              type: integer
+            twf:
+              type: integer
+            hdf:
+              type: integer
+            pwf:
+              type: integer
+            osf:
+              type: integer
+            rnf:
+              type: integer
+    responses:
+      200:
+        description: Diagnóstico realizado com sucesso
+      400:
+        description: Nome já existente
     """
     data = request.get_json()
     nome = data.get("nome")
@@ -99,6 +137,12 @@ def adicionar():
 def listar():
     """
     Lista todos os registros cadastrados
+    ---
+    tags:
+      - Equipamentos
+    responses:
+      200:
+        description: Lista de equipamentos
     """
     ordem = [
         "nome", "id", "temperatura_ar", "temperatura_processo", "desgaste_ferramenta", "torque", "rpm",
@@ -121,6 +165,24 @@ def listar():
 # Rota GET: busca por nome (parcial ou completo)
 @app.route('/api/pesquisar/<nome>', methods=['GET'])
 def pesquisar(nome):
+    """
+    Pesquisa registros pelo nome informado
+    ---
+    tags:
+      - Equipamentos
+    parameters:
+      - name: nome
+        in: path
+        type: string
+        required: true
+        description: Nome (ou parte) do equipamento
+    responses:
+      200:
+        description: Equipamento(s) encontrado(s)
+      404:
+        description: Equipamento não encontrado
+    """
+
     """
     Pesquisa registros pelo nome informado
     """
